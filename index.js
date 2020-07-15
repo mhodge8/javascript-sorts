@@ -59,9 +59,52 @@ function insertionSort(arr){
     return arr;
 }
 
+function mergeSort(arr){
+    if (arr.length > 1){
+        //find midpoint and divide into two arrays
+        let mid = (arr.length +1)/2; 
+        let arrL = arr.slice(0, mid);
+        let arrR = arr.slice(mid, );
+        mergeSort(arrL);
+        mergeSort(arrR);
+
+        //compares elements from left array and right array, inserts smallest into arr
+        let countR = 0;
+        let countL = 0;
+        let countArr = 0;
+        
+        while (countR < arrR.length && countL < arrL.length){
+            if (arrL[countL] < arrR[countR]){
+                arr[countArr] = arrL[countL];
+                countL++;
+                countArr++;
+            } else{
+                arr[countArr] = arrR[countR];
+                countR++;
+                countArr++;
+            }
+        }
+
+        //adds any remaining elements from arrL or arrR
+        while (countR < arrR.length){
+            arr[countArr] = arrR[countR];
+            countR++;
+            countArr++;
+        }
+        while (countL < arrL.length){
+            arr[countArr] = arrL[countL];
+            countL++;
+            countArr++;
+        }  
+    }
+    return arr;
+}
+
+//driver code
 let array1 = [5,4,3,2,1];
 
 console.log(`Unsorted Array: ${array1}`)
 console.log(`Selection Sort Output: ${selectionSort(array1)}`);
 console.log(`Bubble Sort Output: ${bubbleSort(array1)}`);
 console.log(`Insertion Sort Output: ${insertionSort(array1)}`);
+console.log(`Merge Sort Output: ${mergeSort(array1)}`);
